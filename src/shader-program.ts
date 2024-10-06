@@ -13,7 +13,6 @@ export function initShaderProgram(gl: any, vsSource: any, fsSource: any) {
     gl.linkProgram(shaderProgram);
   
     // If creating the shader program failed, alert
-  
     if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
       alert(
         `Unable to initialize the shader program: ${gl.getProgramInfoLog(
@@ -27,22 +26,20 @@ export function initShaderProgram(gl: any, vsSource: any, fsSource: any) {
   }
   
   //
-  // creates a shader of the given type, uploads the source and
+  // creates a shader of the given type, attaches shader code and
   // compiles it.
   //
   function loadShader(gl: any, type: any, source: any) {
+    // Create shader container
     const shader = gl.createShader(type);
   
-    // Send the source to the shader object
-  
+    // Attach the shader code to the shader container
     gl.shaderSource(shader, source);
   
-    // Compile the shader program
-  
+    // Compile the shader container
     gl.compileShader(shader);
   
     // See if it compiled successfully
-  
     if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
       alert(
         `An error occurred compiling the shaders: ${gl.getShaderInfoLog(shader)}`,
